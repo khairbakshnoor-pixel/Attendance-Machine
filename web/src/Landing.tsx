@@ -1,0 +1,36 @@
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleCheck, Clock3, Fingerprint, LayoutDashboard, ScanFace, ShieldCheck, Sparkles, Users, Video } from 'lucide-react';
+import { COMPANY } from './api';
+
+export function Brand({ light = false }: { light?: boolean }) {
+  return <span className={`brand ${light ? 'brand-light' : ''}`}><span className="brand-mark"><ScanFace size={24} /></span>{COMPANY}<span className="brand-dot">.</span></span>;
+}
+
+export default function Landing({ open }: { open: () => void }) {
+  return <div className="landing">
+    <header className="site-header"><a href="#" aria-label="FaceTrack home"><Brand /></a><nav><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#privacy">Data & privacy</a></nav><button className="button small dark" onClick={open}>Explore demo <ArrowUpRight size={16} /></button></header>
+    <main>
+      <section className="hero">
+        <div className="hero-copy"><span className="eyebrow"><span className="green-dot" /> A better start to every workday</span><h1>Great teams<br />show up.<br /><em>Make it count.</em></h1><p>Face-verified attendance that feels effortless. Give your people a simple check-in and your business a clearer picture of the day.</p><div className="hero-actions"><button className="button dark large" onClick={open}>Explore the live demo <ArrowRight size={18} /></button><a className="text-link" href="#workflow">See how it works <ArrowDown size={16} /></a></div><div className="hero-points"><span><Check size={15} /> Simple check-in experience</span><span><Check size={15} /> Clear attendance reports</span></div></div>
+        <div className="hero-art" aria-label="Illustration of the FaceTrack attendance workflow">
+          <div className="orbit orbit-one" /><div className="orbit orbit-two" /><span className="art-spark spark-one">✳</span><span className="art-spark spark-two">+</span>
+          <div className="scan-card"><div className="scan-card-top"><Brand /><span className="badge neutral">Product preview</span></div><div className="portrait"><div className="portrait-hair" /><div className="portrait-head"><i /><i /><span /></div><div className="portrait-body" /><div className="scan-corners"><i /><i /><i /><i /></div><div className="scan-line" /><span className="face-point point-a" /><span className="face-point point-b" /><span className="face-point point-c" /></div><div className="scan-card-bottom"><span className="verified-icon"><CircleCheck size={23} /></span><div><strong>Your workday starts here</strong><span>Look. Verify. Check in.</span></div><ArrowUpRight size={19} /></div></div>
+          <div className="floating-note note-top"><span className="note-icon"><ShieldCheck size={19} /></span><div><strong>Face verification</strong><small>With a movement challenge</small></div></div><div className="floating-note note-bottom"><span className="note-icon purple"><Clock3 size={19} /></span><div><strong>Every arrival, accounted for.</strong><small>One connected attendance record</small></div></div>
+          <span className="art-caption">Less admin. More human.</span>
+        </div>
+      </section>
+      <div className="audience-strip"><span>MADE FOR TEAMS THAT SHOW UP</span><div><Users size={18} /> Offices & teams</div><div><LayoutDashboard size={18} /> Shared workspaces</div><div><Fingerprint size={18} /> On-site operations</div></div>
+      <section id="platform" className="section"><div className="section-heading"><div><span className="overline">YOUR WORKDAY, CONNECTED</span><h2>Less chasing attendance.<br />More running your business.</h2></div><p>From the first check-in to the last report,<br />keep the essentials in one place.</p></div><div className="feature-grid">
+        <article className="feature-card mint"><span className="feature-icon"><ScanFace /></span><h3>A familiar face.<br />A simpler check-in.</h3><p>Explore a camera-led check-in experience, with face matching and a movement challenge before attendance is recorded. Try the flow in our interactive preview.</p><div className="mini-flow"><span><Video size={17} /></span><i /><span><ScanFace size={17} /></span><i /><span><Check size={17} /></span></div></article>
+        <article className="feature-card cream"><span className="feature-icon"><LayoutDashboard /></span><h3>The whole day.<br />At a glance.</h3><p>See who's arrived, who's still checked in, and how attendance changes over time. Search by person or date and export the records you need.</p><div className="mini-bars" aria-hidden="true">{[40, 66, 50, 80, 63, 94, 72].map((n, i) => <span key={i} style={{ height: `${n}%` }} />)}</div></article>
+        <article className="feature-card lavender"><span className="feature-icon"><ShieldCheck /></span><h3>Your people.<br />Your workspace.</h3><p>Keep registration and attendance reports behind administrator access. Set up an authorized attendance station without exposing management controls.</p><div className="mini-people"><span>AD</span><span>HR</span><span><Check size={18} /></span><small>Access with a purpose</small></div></article>
+      </div></section>
+      <section id="workflow" className="workflow-section"><div><span className="overline">SIMPLE BY DESIGN</span><h2>From hello<br />to checked in.</h2><p>A clear flow for the people using it.<br />Useful records for the people managing it.</p><button className="button dark" onClick={open}>Explore your workspace <ArrowRight size={17} /></button></div><div className="workflow-steps">{[
+        ['01', 'Enroll with permission', 'An administrator registers a person using several clear camera captures.'],
+        ['02', 'Look and follow the prompt', 'At an attendance station, the person chooses check-in or check-out and completes the movement challenge.'],
+        ['03', 'Let the record do the talking', 'Verified attendance is saved with a timestamp, ready to review and export.'],
+      ].map(([n, title, text]) => <article key={n}><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
+      <section id="privacy" className="privacy-section"><ShieldCheck size={39} strokeWidth={1.3} /><div><span className="overline">THOUGHTFUL ABOUT PEOPLE</span><h2>Attendance data deserves care.</h2><p>FaceTrack stores face templates for matching, rather than retaining registration photos. Your organization controls enrollment, access, and removal. Clear consent and an alternative check-in process belong in every rollout.</p><small>Movement verification is a basic liveness check. It does not guarantee protection against sophisticated replay attacks.</small></div></section>
+      <section className="cta-section"><span className="eyebrow"><Sparkles size={15} /> A little less friction in your day</span><h2>Ready for a better<br /><em>way to show up?</em></h2><button className="button mint-button large" onClick={open}>Take a look inside <ArrowUpRight size={18} /></button>{import.meta.env.VITE_CONTACT_EMAIL && <a className="contact-link" href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}>Talk to us about your team <ArrowRight size={15} /></a>}</section>
+    </main><footer className="site-footer"><Brand /><span>Interactive product showcase · fictional demo records</span><span>© {new Date().getFullYear()} {COMPANY}</span></footer>
+  </div>;
+}
